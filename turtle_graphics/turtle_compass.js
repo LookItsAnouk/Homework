@@ -65,7 +65,7 @@ print(){
     //console.log(maxY)
    
     for (let i=0 ; i<=maxY +1; i++){ 
-        const x = [] // how to get rid of initial space 
+        const x = [] 
         for(let j=0; j<=maxX +1; j++){
           const test = this.path.find((item)=>{ 
             // console.log(item.join(","), `${i},${j}`)
@@ -84,7 +84,7 @@ print(){
     }
  
 allPoints(){
-    return this.path; // why returning undefined?
+    return this.path; 
 }
 }
     
