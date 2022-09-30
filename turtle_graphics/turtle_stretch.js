@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-
 class turtle{
     constructor(x,y){
         this.start =[x,y];
@@ -90,10 +89,40 @@ allPoints(){
     console.log(this.path) 
 }
 }
-    
+
+// script code 
+let args = process.argv.slice(2);
+//console.log(args)
+if(args !== null){
+    let arr = args.toString().split('-');
+   //console.log(arr)
+   let t  
+    if(arr[0].includes("t")){
+
+    t += new turtle(arr[0].slice(1))
+    }
+    else{
+    t += new turtle(0,0)}
+
+    for (let i = 0; i < arr.length; i++) {
+   
+    if(arr[i] == "r"){
+        t += t.right()
+    }
+    else if(arr[i] == "l"){
+        t += t.left()
+    }
+    else if(arr[i].includes("f")){
+       let n = parseInt(arr[i].slice(1));
+        t += t.forward(n);
+    }
+}
+t += t.print();
+console.log(t);
+}
 
 
-const tortimer = new turtle(1,1);
+/* const tortimer = new turtle(1,1);
 tortimer.forward(3);
 tortimer.right();
 //console.log(tortimer.currentDir)
@@ -102,4 +131,5 @@ tortimer.left();
 tortimer.forward(3);
 console.log(tortimer.print());
 console.log(tortimer.allPoints())
-//console.log(tortimer.path);
+//console.log(tortimer.path); 
+*/
