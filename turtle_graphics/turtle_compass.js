@@ -25,7 +25,6 @@ class turtle{
      }
         this.path.push([this.x,this.y])
     }
-    return this
 }
 
 right(){
@@ -65,7 +64,7 @@ print(){
     }
     //console.log(maxY)
    
-    for (let i=0 ; i<=maxY +1; i++){ /
+    for (let i=0 ; i<=maxY +1; i++){ 
         const x = [] // how to get rid of initial space 
         for(let j=0; j<=maxX +1; j++){
           const test = this.path.find((item)=>{ 
@@ -85,7 +84,7 @@ print(){
     }
  
 allPoints(){
-    console.log(this.path) // why returning undefined?
+    return this.path; // why returning undefined?
 }
 }
     
@@ -99,6 +98,5 @@ tortimer.forward(2)
 tortimer.left();
 tortimer.forward(3);
 console.log(tortimer.print());
-//console.log(tortimer.allPoints())
+console.log(tortimer.allPoints())
 //console.log(tortimer.path);
-//1
