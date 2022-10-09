@@ -192,3 +192,5 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/macos,node,linux
 
 git_ignoredFile.js
+
+turtle_degrees.js
