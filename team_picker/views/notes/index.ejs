@@ -1,0 +1,17 @@
+<!-- views/notes/index.ejs -->
+<%- include("../partials/header") %>
+<h1>Notes</h1>
+<div class="note-cards">
+  <% for (let note of notess) { %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <a href="/notes/<%= note.id %>">
+        <h5 class="card-title"><%= note.title %></h5>
+      </a>
+      <img class="small-image" src="<%= note.imageUrl %>" />
+      <p class="card-text"><%= note.content %></p>
+    </div>
+  </div>
+  <% } %>
+</div>
+<%- include("../partials/footer") %>

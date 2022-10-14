@@ -21,15 +21,17 @@ const cookieParser = require('cookie-parser');
 
 app.use(cookieParser())
 
+const postsRouter = require("./routes/postsRouter");
+app.use("/posts", postsRouter);
 
 const path = require("path")
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 
 const logger = require('morgan');
 app.use(logger('dev'));
+//--------
 
 app.get('/', (req, res) => {
     res.render('home')
@@ -45,15 +47,13 @@ app.get('/new_cohort', (req, res) => {
 
 //----Handle the submit of the Survey form---->
 app.get('/submit', (req, res) => {
-    const fullName = req.query.fullName;
-    const favouriteColour = req.query.favouriteColour;
-    const favouriteDay = req.query.favouriteDay;
-    const message = req.query.message
-    res.render('thank_you', {
-        fullName: fullName,
-        favouriteColour: favouriteColour,
-        favouriteDay: favouriteDay,
-        message: message
+    const name = req.query.name;
+    const logo = req.query.logo;
+    const members = req.query.members;
+    res.render('cohort_details/', {
+        name: name,
+        logo: logo,
+        members: members
     })
 })
 
