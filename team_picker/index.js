@@ -1,11 +1,9 @@
 var express = require('express')
 var app = express()
 
-var morgan = require('morgan')
-
-
-
 const methodOverride = require("method-override")
+
+app.use(express.urlencoded({extended: true}))
 
 // ---------------Method Overrride Middleware--------------
 app.use(methodOverride((req, res) => {
@@ -15,14 +13,6 @@ app.use(methodOverride((req, res) => {
     }
 }))
 
-app.use(express.urlencoded({extended: true}))
-
-const cookieParser = require('cookie-parser');
-
-app.use(cookieParser())
-
-const postsRouter = require("./routes/postsRouter");
-app.use("/posts", postsRouter);
 
 const path = require("path")
 
@@ -31,45 +21,43 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const logger = require('morgan');
 app.use(logger('dev'));
-//--------
-
-app.get('/', (req, res) => {
-    res.render('home')
-})
-app.get('/cohort_list', (req, res) => {
-    res.render('cohort_list')
-})
-app.get('/new_cohort', (req, res) => {
-    res.render('new_cohort')
-})
 
 
 
-//----Handle the submit of the Survey form---->
-app.get('/submit', (req, res) => {
-    const name = req.query.name;
-    const logo = req.query.logo;
-    const members = req.query.members;
-    res.render('cohort_details/', {
-        name: name,
-        logo: logo,
-        members: members
-    })
-})
+// app.get('/', (req, res) => {
+//     res.render('cohorts/new')
+// })
+// app.get('/cohorts/index', (req, res) => {
+//     res.render('cohorts/index')
+// })
+// app.get('/cohorts/show', (req, res) => {
+//     res.render('cohorts/show')
+// })
 
 
 
-/*
-// ---------------POST ROUTER ACCESSING POST ROUTES------------------>
-const noteRouter = require('./routes/notes')
-app.use('/notes', noteRouter)*/
+// //----Handle the submit of the Survey form---->
+// app.get('/submit', (req, res) => {
+//     const name = req.query.name;
+//     const logourl = req.query.logourl;
+//     const members = req.query.members;
+//     res.render('cohort/show', {
+//         name: name,
+//         logourl: logourl,
+//         members: members
+//     })
+// })
+
+// Cohort router access
+const cohortRouter = require("./routes/cohorts");
+app.use("/cohorts", cohortRouter);
 
 //---Set View Engine----------->
 app.set('view engine', 'ejs')
 app.set('views', 'views')
 
 
-
+// servers
 const PORT = 3000;
 const DOMAIN = 'localhost'
 

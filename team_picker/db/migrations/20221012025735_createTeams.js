@@ -3,9 +3,9 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.createTable('teams', table => {
+    return knex.schema.createTable('cohorts', table => {
         table.increments('id'); 
-        table.string('logoURL'); 
+        table.string('logourl'); 
         table.text('name'); 
         table.string('members'); 
         table.timestamp('created_at').defaultTo(knex.fn.now());
@@ -17,5 +17,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-    return knex.schema.dropTable('teams')
+    return knex.schema.dropTable('cohorts')
 };
