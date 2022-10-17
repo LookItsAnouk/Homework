@@ -5,11 +5,13 @@
   <% for (let cohort of cohorts) { %>
   <div class="card mb-4">
     <div class="card-body">
-      <a href="/cohorts/<%= cohort.id %>">
+      <a href="/cohorts/<%= cohort.id %>"  style="color:darkolivegreen;
+        text-decoration: underline;
+        cursor: auto;">
         <h5 class="card-title"><%= cohort.name %></h5>
       </a>
-      <p> <%= cohort.members %></p>
-      <img class="small-image" src="<%= cohort.logourl %>" />
+      <img class="small-image" style="width: 50vw;" src="<%= cohort.logourl %>" />
+      <p>Members: <%= cohort.members %></p>
     </div>
   </div>
   <% } %>

@@ -6,7 +6,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('cohorts', table => {
         table.increments('id'); 
         table.string('logourl'); 
-        table.text('name'); 
+        table.string('name'); 
         table.string('members'); 
         table.timestamp('created_at').defaultTo(knex.fn.now());
       })

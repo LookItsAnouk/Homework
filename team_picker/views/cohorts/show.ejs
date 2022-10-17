@@ -1,8 +1,8 @@
 <!-- views/show.ejs -->
 <%- include("../partials/header") %>
-<div class="card mb-4">
+<div class="card mb-3">
   <% if (cohort.logourl) { %>
-  <img class="card-img-top" src="<%= cohort.logourl %>" alt="cohort logo"/>
+  <img class="card-img-top" style="width: 25vw;" src="<%= cohort.logourl %>" alt="cohort logo" />
   <% } %>
   <div class="card-body">
     <h5 class="card-title"><%= cohort.name %></h5>
@@ -10,27 +10,36 @@
       Team Members: <%= cohort.members %><br>
       <em>Created at <%= new Date(cohort.created_at).toLocaleString() %></em>
     </p>
+  </div>
+</div>
+
     <div class="d-flex">
       <form method="POST" action="">
         <div class="form-group">
-          <label for="teams" style="margin: 10px">Type of Teams</label> <br>
-          <input
+          <p>Type of Teams:</p>
+          <div class="form-check form-check-inline">
+          <label for="team_count" class="form-check-label" style="">Number Of Teams</label>
+            <input
             type="radio"
-            class="form-control"
+            class="form-check-input"
             name="teams"
             value="team_count"
-          />
-          "Number Of Teams"
-          <input
+            id="team_count"
+            />
+          </div>
+          <div class="form-check form-check-inline">
+            <label for="per_team" style="" class="form-check-label">Number of People Per Team</label> 
+            <input
             type="radio"
-            class="form-control"
+            class="form-check-input"
             name="teams"
             value="per_team"
-          />
-          "Number Per Team"
-        </div>
-      <div class="form-group">
-        <label for="quantity" style="margin: 10px">Number Per Team</label> <br>
+            id="per_team"
+            />
+          </div>
+          <br>
+        
+        <label for="quantity" >Count</label> <br>
         <input
           type="number"
           class="form-control"
@@ -39,10 +48,11 @@
       </div>
       <input type="submit" class="btn btn-outline-success" value="Submit" />
     </form>
-      <a class="btn btn-outline-success mr-2" href="/cohorts/<%= cohort.id %>/edit">
-        Edit
-      </a>
+    
     </div>
+    <a class="btn btn-outline-success mr-2" href="/cohorts/<%= cohort.id %>/edit">
+      Edit
+    </a>
     <form method="POST" action="/cohorts/<%= cohort.id %>">
       <input type="hidden" name="_method" value="DELETE" />
       <input type="submit" class="btn btn-outline-danger" value="Delete" />
