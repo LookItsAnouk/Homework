@@ -1,0 +1,77 @@
+<!-- views/show.ejs -->
+<%- include("../partials/header") %>
+
+<div class="card mb-3">
+  <% if (cohort.logourl) { %>
+  <img class="card-img-top" style="width: 25vw;" src="<%= cohort.logourl %>" alt="cohort logo" />
+  <% } %>
+  <div class="card-body">
+    <h5 class="card-title"><%= cohort.name %></h5>
+    <p class="card-text">
+      Team Members: <%= cohort.members %>
+      <br>
+      <em>Created at <%= new Date(cohort.created_at).toLocaleString() %></em>
+    </p>
+  </div>
+</div>
+
+    <div class="d-flex">
+      <form method="GET" action="">
+        <div class="form-group">
+          <p>Type of Teams:</p>
+          <div class="form-check form-check-inline">
+          <label for="team_count" class="form-check-label" >Number Of Teams</label>
+            <input
+            type="radio"
+            class="form-check-input"
+            name="teams"
+            value="team_count"
+            id="team_count"
+            />
+          </div>
+          <div class="form-check form-check-inline">
+            <label for="per_team" class="form-check-label">Number of People Per Team</label> 
+            <input
+            type="radio"
+            class="form-check-input"
+            name="teams"
+            value="per_team"
+            id="per_team"
+            />
+          </div>
+          <br>
+        
+        <label for="quantity" style="margin: 10px;" >Count:</label> <br>
+        <input
+          type="number"
+          class="form-control"
+          name="quantity"
+          id="count"
+        />
+        <br>
+      </div>
+      <input type="submit" class="btn btn-outline-success"/>
+    </form>
+    <br>
+    <div id="results" style="margin-left: 20px;">
+      <% if (finalTeams) { %>
+        <%for (let i = 0; i < finalTeams.length; i++) {%>
+          <%let num = i+1%>
+          <p> Team <%= num%>: <%=finalTeams[i] %></p>
+          <% } %>
+        <% } %>
+       
+    </div>
+    </div>
+    <a class="btn btn-outline-success mr-2" href="/cohorts/<%= cohort.id %>/edit">
+      Edit
+    </a>
+    <form method="POST" action="/cohorts/<%= cohort.id %>">
+      <input type="hidden" name="_method" value="DELETE" />
+      <input type="submit" class="btn btn-outline-danger" value="Delete" />
+    </form>
+  </div>
+</div>
+
+
+<%- include("../partials/footer") %>
