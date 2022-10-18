@@ -20,7 +20,7 @@
         <div class="form-group">
           <p>Type of Teams:</p>
           <div class="form-check form-check-inline">
-          <label for="team_count" class="form-check-label" style="">Number Of Teams</label>
+          <label for="team_count" class="form-check-label" >Number Of Teams</label>
             <input
             type="radio"
             class="form-check-input"
@@ -30,7 +30,7 @@
             />
           </div>
           <div class="form-check form-check-inline">
-            <label for="per_team" style="" class="form-check-label">Number of People Per Team</label> 
+            <label for="per_team" class="form-check-label">Number of People Per Team</label> 
             <input
             type="radio"
             class="form-check-input"
@@ -41,22 +41,26 @@
           </div>
           <br>
         
-        <label for="quantity" >Count:</label> <br>
+        <label for="quantity" style="margin: 10px;" >Count:</label> <br>
         <input
           type="number"
           class="form-control"
           name="quantity"
           id="count"
         />
+        <br>
       </div>
       <input type="submit" class="btn btn-outline-success"/>
     </form>
-    <div id="results">
+    <br>
+    <div id="results" style="margin-left: 20px;">
       <% if (finalTeams) { %>
-        <% for(const t of finalTeams){%>
-            <p> <% t %></p>
+        <%for (let i = 0; i < finalTeams.length; i++) {%>
+          <%let num = i+1%>
+          <p> Team <%= num%>: <%=finalTeams[i] %></p>
           <% } %>
         <% } %>
+       
     </div>
     </div>
     <a class="btn btn-outline-success mr-2" href="/cohorts/<%= cohort.id %>/edit">

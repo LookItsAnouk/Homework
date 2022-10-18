@@ -46,17 +46,16 @@ router.get("/:id", (req, res) => {
       .first()
       .then(cohort => {
         if (!cohort) {
-          res.send("No Cohorts found")
+          res.send("No Cohort found")
         } else {
           if (req.query.teams) {
             let teams = req.query.teams;
             let quantity = req.query.quantity;
             if (!teams){
-              res.render("cohorts/show", {cohort});
+              res.render("cohorts/show", {cohort,teams});
             }
             else{
              let finalTeams= pickerLogic.getTeams(teams,quantity,cohort.members)
-             console.log(finalTeams)
              res.render("cohorts/show", {cohort, teams, finalTeams})
             }
           }

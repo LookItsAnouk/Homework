@@ -5,14 +5,14 @@ function getTeams(teams,quantity,members){
     
     if(teams == "team_count"){
         function manyTeams(names, numOfTeams) {
-            let final = {};
+            let final = [];
             let teamCounter = 0;
         
             for (let i = 0; i < names.length; ++i) {
-                if (!final["array" + teamCounter]) {
-                    final["array" + teamCounter] = [];
+                if (!final[teamCounter]) {
+                    final[teamCounter] = [];
                 }
-               final["array" + teamCounter].push(names[i]);
+               final[teamCounter].push(names[i]);
                 if (++teamCounter == numOfTeams) {
                     teamCounter = 0;
                 }
@@ -20,6 +20,7 @@ function getTeams(teams,quantity,members){
             return final;
         }
         let arr = manyTeams(shuffledArray, quantity)
+        console.log(arr)
         return arr;
 
     }
@@ -32,6 +33,7 @@ function getTeams(teams,quantity,members){
         }
         
         let arr = cut(shuffledArray, quantity);
+        console.log(arr)
         return arr;
        
     }
