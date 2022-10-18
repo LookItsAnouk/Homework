@@ -1,5 +1,6 @@
 <!-- views/show.ejs -->
 <%- include("../partials/header") %>
+
 <div class="card mb-3">
   <% if (cohort.logourl) { %>
   <img class="card-img-top" style="width: 25vw;" src="<%= cohort.logourl %>" alt="cohort logo" />
@@ -7,14 +8,15 @@
   <div class="card-body">
     <h5 class="card-title"><%= cohort.name %></h5>
     <p class="card-text">
-      Team Members: <%= cohort.members %><br>
+      Team Members: <%= cohort.members %>
+      <br>
       <em>Created at <%= new Date(cohort.created_at).toLocaleString() %></em>
     </p>
   </div>
 </div>
 
     <div class="d-flex">
-      <form method="POST" action="">
+      <form method="GET" action="">
         <div class="form-group">
           <p>Type of Teams:</p>
           <div class="form-check form-check-inline">
@@ -39,16 +41,23 @@
           </div>
           <br>
         
-        <label for="quantity" >Count</label> <br>
+        <label for="quantity" >Count:</label> <br>
         <input
           type="number"
           class="form-control"
           name="quantity"
+          id="count"
         />
       </div>
-      <input type="submit" class="btn btn-outline-success" value="Submit" />
+      <input type="submit" class="btn btn-outline-success"/>
     </form>
-    
+    <div id="results">
+      <% if (finalTeams) { %>
+        <% for(const t of finalTeams){%>
+            <p> <% t %></p>
+          <% } %>
+        <% } %>
+    </div>
     </div>
     <a class="btn btn-outline-success mr-2" href="/cohorts/<%= cohort.id %>/edit">
       Edit
@@ -59,4 +68,6 @@
     </form>
   </div>
 </div>
+
+
 <%- include("../partials/footer") %>

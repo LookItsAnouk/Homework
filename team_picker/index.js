@@ -27,9 +27,7 @@ app.use(logger('dev'));
 // app.get('/', (req, res) => {
 //     res.render('cohorts/new')
 // })
-// app.get('/cohorts/index', (req, res) => {
-//     res.render('cohorts/index')
-// })
+
 // app.get('/cohorts/show', (req, res) => {
 //     res.render('cohorts/show')
 // })
@@ -51,6 +49,10 @@ app.use(logger('dev'));
 // Cohort router access
 const cohortRouter = require("./routes/cohorts");
 app.use("/cohorts", cohortRouter);
+
+// app.get('/', (req, res) => {
+//     res.render('cohorts/index')
+// })
 
 //---Set View Engine----------->
 app.set('view engine', 'ejs')

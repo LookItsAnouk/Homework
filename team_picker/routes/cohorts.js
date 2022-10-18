@@ -1,7 +1,9 @@
 const express = require("express");
 const knex = require("../db/client"); // This allows us to interact with the database
-
 const router = express.Router();
+const pickerLogic = require("../public/pickerLogic.js");
+
+
 
   // render cohort index
   router.get("/index", (req, res) => {
@@ -46,10 +48,25 @@ router.get("/:id", (req, res) => {
         if (!cohort) {
           res.send("No Cohorts found")
         } else {
-          res.render("cohorts/show", {cohort: cohort});
-        }
+          if (req.query.teams) {
+            let teams = req.query.teams;
+            let quantity = req.query.quantity;
+            if (!teams){
+              res.render("cohorts/show", {cohort});
+            }
+            else{
+             let finalTeams= pickerLogic.getTeams(teams,quantity,cohort.members)
+             console.log(finalTeams)
+             res.render("cohorts/show", {cohort, teams, finalTeams})
+            }
+          }
+          }
       });
+      
   });
+
+
+
 //------------Render Edit template---------------
 router.get('/:id/edit', (req, res) => {
   knex('cohorts')
@@ -85,6 +102,8 @@ router.delete("/:id", (req,res) => {
      res.redirect("/cohorts/index")
     })
 })
+
+
 
 
 

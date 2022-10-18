@@ -12,13 +12,14 @@ module.exports = {
       username: 'username',
       password: 'password'
     }
-  },
-  migrations: {
+    ,
+    migrations: {
     tableName: "migrations",
     directory: "./db/migrations"
-  },
-  seeds: {
+    },
+    seeds: {
     directory: "./db/seeds"
-  }
+    }
 
-};
+  } 
+};  
