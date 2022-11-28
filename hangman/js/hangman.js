@@ -1,11 +1,11 @@
 
    
-
-    let answer = "winner";
     let errorCount = 0;
     let guesses = [];
     let maxWrong = 6;
     let guessStatus =null;
+    let words = ['bucket', 'yellow', 'potato', 'cactus', 'octopus', 'branch', 'forest', 'sunshine', 'lemon']
+    let answer = '';
 
     function makeButtons(){
         const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
@@ -20,11 +20,21 @@
             `+ letter + `
             </button>`
             ).join('');
-    document.getElementById('letters').innerHTML = buttons;
+        document.getElementById('letters').innerHTML = buttons;
+
     }
     
-    makeButtons();
+    document.addEventListener('keydown', (event)=>{
+        doGuess(event.key)
+    })
+   
     
+    
+    function setAnswer(){
+        answer = words[Math.floor(Math.random() * words.length)]
+    }
+  
+
     function doGuess(selectedLetter){
         guesses.indexOf(selectedLetter) === -1 ? guesses.push(selectedLetter) : null;
         document.getElementById(selectedLetter).setAttribute('disabled', true);
@@ -41,43 +51,46 @@
     }
 
     function updateHangman(){
-        document.getElementById('hangman').src = './images/gallows' + errorCount + '.jpg';
+        if(errorCount<=6){
+        document.getElementById('hangman').src = './images/gallows' + errorCount + '.jpg';}
     }
 
     function ifWin(){
         if(guessStatus === answer){
-            alert("You won!")
+            
+            const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/7009");
+            audio.play();
+            setTimeout(function() {alert("You won!"); },500);
+            setTimeout(function() {reset(); },1000);
         }
     }
 
     function ifLose(){
         if(errorCount === maxWrong){
-            alert("You Lost, Try Again!")
+            const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/7031");
+            audio.play();
+            setTimeout(function() {alert("You Lost, Try Again!"); },500);
+            setTimeout(function() {reset(); },1000);
+            }
+            
         }
-    }
+    
 
     function guess(){
         guessStatus = answer.split('').map(letter =>(guesses.indexOf(letter) >= 0? letter : " _ ")).join('');
         document.getElementById('guess').innerHTML = guessStatus;
     }
 
+    makeButtons();
+    setAnswer();
     guess();
 
-
-
-    
-
- //<div id ="gameArea">
-// <div id="hangman">
-// <h1>Hangman</h1>
-// </div>
-// <div id="alphabet">
-
-// </div>
-// <div id="guess" >
-// <p>Guess a Letter:</p>
-
-// </div>
-// <div id="buttons">
-
-// </div>
+    function reset(){
+        errorCount = 0;
+        guesses = [];
+        guessStatus = null;
+        guess();
+        updateHangman();
+        makeButtons();
+        setAnswer();
+    }

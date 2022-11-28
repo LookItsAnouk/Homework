@@ -1,5 +1,6 @@
+
 button{
-    background-color: #405cf5;
+    background-color: #788af3;
     background-clip: padding-box;
     border: 1px solid transparent;
     border-radius: .25rem;
@@ -32,7 +33,7 @@ button:disabled,
 button[disabled]{
     align-items: center;
     background-clip: padding-box;
-    background-color: #fa6400;
+    background-color: #f08c49;
     border: 1px solid transparent;
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -59,10 +60,11 @@ button[disabled]{
 
 }
 
-.body{
-    background-color: peachpuff;
-}
+
+
+
+
 
 img{
-    max-width: 45vw;
+    max-width: 40vw;
 }

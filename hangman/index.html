@@ -12,26 +12,34 @@
     />
     
 </head>
-<body>
+<body style="background-color: peachpuff ;">
     
     <div id ="gameArea">
         <div id="image">
             <h1 style="text-align:center ;">Hangman</h1>
             <img id="hangman" src="./images/gallows0.jpg" >
         </div>
+        <p style="font-size: 20px; padding-left: 10px;">Guess a Letter:</p>
         <div id="letters" style="padding-left: 10px;">
             
         </div>
         <br>
-        <div  >
-            <p style="font-size: 20px; padding-left: 10px;">Guess a Letter:</p>
+        <div >
+            
             <div id="guess" style="font-size: 40px; text-align: center;">
             </div>
         </div> 
             
         </div>
-        <div id="buttons">
-
+        <br>
+        <div id="reset">
+            <button type="button"
+            style="padding-left: 10px;"
+            id='resets'
+            onClick=reset()
+            
+            >Reset
+            </button>
         </div>
     </div>
 
