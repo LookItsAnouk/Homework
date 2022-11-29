@@ -1,0 +1,31 @@
+<div class="form-group">
+    <label for="logourl" style="margin: 10px">Logo URL</label> <br>
+    <input
+      type="text"
+      class="form-control"
+      name="logourl"
+      placeholder="e.g. https://www.example.com/some.png"
+      value="<%= cohort ? cohort.logourl : '' %>"
+    />
+  </div>
+  <div class="form-group">
+    <label for="name" style="margin: 10px">Team Name</label> <br>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      placeholder="Flying Funks"
+      value="<%= cohort ? cohort.name : '' %>"
+    />
+  </div>
+  <div class="form-group">
+    <label for="members" style="margin: 10px">Team Members</label> <br>
+    <input
+      type="text"
+      class="form-control"
+      name="members"
+      placeholder="Jon Snow, James Brown, Harry Potter"
+      value="<%= cohort ? cohort.members : '' %>"
+    />
+  </div>
+  <br>
