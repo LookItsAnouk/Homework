@@ -1,0 +1,19 @@
+<!-- views/notes/index.ejs -->
+<%- include("../partials/header") %>
+<h1>Cohort Index</h1>
+<div>
+  <% for (let cohort of cohorts) { %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <a href="/cohorts/<%= cohort.id %>"  style="color:darkolivegreen;
+        text-decoration: underline;
+        cursor: auto;">
+        <h5 class="card-title"><%= cohort.name %></h5>
+      </a>
+      <img class="small-image" style="width: 50vw;" src="<%= cohort.logourl %>" />
+      <p>Members: <%= cohort.members %></p>
+    </div>
+  </div>
+  <% } %>
+</div>
+<%- include("../partials/footer") %>
